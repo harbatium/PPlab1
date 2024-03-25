@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Структура для хранения информации о кандидате
+// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ РєР°РЅРґРёРґР°С‚Р°
 struct Candidate {
     string name;
     int votes;
@@ -15,7 +15,8 @@ struct Candidate {
         votes = 0;
     }
 };
-// Searching for the length of the longest name of candidate
+
+/// РџРѕРёСЃРє РґР»РёРЅС‹ СЃР°РјРѕРіРѕ РґР»РёРЅРЅРѕРіРѕ РёРјРµРЅРё РєР°РЅРґРёРґР°С‚Р°
 int canditatesLongestName(vector<Candidate>& candidates){
     int candidates_longest_name_length = 0;
     for(int i = 0; i < candidates.size(); i++){
@@ -25,18 +26,18 @@ int canditatesLongestName(vector<Candidate>& candidates){
     }
     return candidates_longest_name_length;
 }
+
+// Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РіРѕР»РѕСЃРѕРІР°РЅРёСЏ
 void outputElection(vector<Candidate>& candidates){
-    // Длина самого длинного имени кандидата
     int candidates_longest_name_length = canditatesLongestName(candidates);
     cout << "\nLongest name is " << candidates_longest_name_length << " symbols" << endl;
 
     cout << "\nElection results:" << endl;
-    // Верхняя разграничивающая строка
+    
     for (int i = 0; i < 16+candidates_longest_name_length; i++) {
         cout << "@";
     }
     cout << endl;
-    // Вывод результатов
     for (int i = 0; i < candidates.size(); i++) {
         cout << "@ " << i + 1 << ". " << candidates[i].name << ": " << candidates[i].votes << " votes";
         int needed_spaces_amount = 0;
@@ -46,22 +47,19 @@ void outputElection(vector<Candidate>& candidates){
         }
         cout << "@" << endl;
     }
-    // Нижняя разграничивающая строка
     for (int i = 0; i < 16+candidates_longest_name_length; i++) {
         cout << "@";
     }
 }
-// Функция для проведения голосования
+// РџСЂРѕРІРµРґРµРЅРёРµ РіРѕР»РѕСЃРѕРІР°РЅРёСЏ
 void conductElection(vector<Candidate>& candidates) {
     cout << "Voting for the choice of the headman!" << endl;
 
-    // Вывод списка кандидатов
     cout << "Candidates:" << endl;
     for (int i = 0; i < candidates.size(); i++) {
         cout << i + 1 << ". " << candidates[i].name << endl;
     }
 
-    // Цикл голосования
     while (true) {
         cout << "Enter the number of the candidate you want to vote for (0 - end voting):";
         int choice;
@@ -75,40 +73,12 @@ void conductElection(vector<Candidate>& candidates) {
             break;
         }
 
-        // Увеличение количества голосов кандидата
         candidates[choice - 1].votes++;
     }
 
-    // Сортировка кандидатов по убыванию голосов
     sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) {
         return a.votes > b.votes;
     });
 
-    // Вывод результатов голосования
-    // cout << "Результаты голосования:" << endl;
     outputElection(candidates);
 }
-// // test 1
-// void testInvalidCandidateCount() { 
-//     int numCandidates = -10;
-
-//     if (numCandidates > 0) {
-//         cout << "Test 1 Passed: Valid input." << endl;
-//         // return true;
-//     }
-//     else {
-//         cout << "Test 1 Failed: Invalid input. Try again." << endl;
-//         // return false;
-//     }
-// }
-// void testCandidateNameWithSpaces() {
-//     int numCandidates = 1;
-
-//     string name = "Haruki Murakami";
-
-//     if (name.find(' ') == string::npos) {
-//         cout << "Test 2 Passed: Valid input." << endl;
-//     } else {
-//         cout << "Test 2 Failed: Invalid input." << endl;
-//     }
-// }

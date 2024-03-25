@@ -4,17 +4,10 @@
 using namespace std;
 
 int main() {
-    //Тесты
-    // testInvalidCandidateCount();
-    // testCandidateNameWithSpaces();
-    // Ввод количества кандидатов
     int numCandidates;
     cout << "Enter the amount of candidates: ";
     cin >> numCandidates;
-    // while(!testInvalidCandidateCount(numCandidates)){
-    //     cin >> numCandidates;
-    // }
-    // Ввод имён кандидатов
+    
     vector<Candidate> candidates;
     for (int i = 0; i < numCandidates; i++) {
         string name;
